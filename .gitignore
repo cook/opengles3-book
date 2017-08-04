@@ -26,3 +26,6 @@ xcuserdata
 *.moved-aside
 
 
+/_build
+/cscope.files
+/cscope.out
