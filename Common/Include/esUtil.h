@@ -208,6 +208,9 @@ GLuint ESUTIL_API esLoadShader ( GLenum type, const char *shaderSrc );
 //
 GLuint ESUTIL_API esLoadProgram ( const char *vertShaderSrc, const char *fragShaderSrc );
 
+int ESUTIL_API esGenCoordination(float scale, GLfloat **vertices, GLfloat** colors, GLuint **indices);
+int ESUTIL_API esGenTriangle(float scale, GLfloat **vertices, GLfloat **normals,
+                             GLfloat **texCoords, GLuint  **indices);
 
 //
 /// \brief Generates geometry for a sphere.  Allocates memory for the vertex data and stores

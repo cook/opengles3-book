@@ -61,6 +61,172 @@
 //
 //
 
+/** 
+ * Create a 3D coordination, a.k.a, 3 axis arrows.
+ * 
+ * @return Size of the `coordIndices'.
+ */
+int ESUTIL_API esGenCoordination(float scale,
+                                 GLfloat **vertices,
+                                 GLfloat **colors,
+                                 GLuint  **indices)
+{
+    int numVertices = 30;
+    int numIndices = 30;
+
+    const GLfloat coordVerts[] = {
+        -0.5f, 0.f,   0.f,      //!< x axis
+        0.5f,  0.f,   0.f,
+        0.4f,  0.1f,  0.f,      //!< arrow
+        0.5f,  0.f,   0.f,
+        0.4f, -0.1f,  0.f,
+        0.5f,  0.f,   0.f,
+        0.4f,  0.0f,  0.1f,
+        0.5f,  0.f,   0.f,
+        0.4f,  0.f,  -0.1f,
+        0.5f,  0.f,   0.f,
+        0.f,  -0.5f,  0.f,      //!< y axis
+        0.f,   0.5f,  0.f,
+        -0.1f, 0.4f,  0.f,      //!< arrow
+        0.f,   0.5f,  0.f,
+        0.1f,  0.4f,  0.f,
+        0.f,   0.5f,  0.f,
+        0.f,   0.4f, -0.1f,
+        0.f,   0.5f,  0.f,
+        0.f,   0.4f,  0.1f,
+        0.f,   0.5f,  0.f,
+        0.f,   0.f,  -0.5f,     //!< z axis
+        0.f,   0.f,   0.5f,
+        -0.1f, 0.f,   0.4f,      //!< arrow
+        0.f,   0.f,   0.5f,
+        0.1f,  0.f,   0.4f,
+        0.f,   0.f,   0.5f,
+        0.f,  -0.1f,  0.4f,
+        0.f,   0.f,   0.5f,
+        0.f,   0.1f,  0.4f,
+        0.f,   0.f,   0.5f
+    };
+    GLfloat coordColors[] = {
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f
+    };
+
+    if (vertices != NULL) {
+        *vertices = malloc(sizeof(GLfloat) * 3 * numVertices);
+        memcpy(*vertices, coordVerts, sizeof(coordVerts));
+
+        for (int i = 0; i < numVertices * 3; i++){
+            (*vertices)[i] *= scale;
+        }
+    }
+
+    if (colors != NULL) {
+        *colors = malloc(sizeof(GLfloat) * 4 * numVertices);
+        memcpy(*colors, coordColors, sizeof(coordColors));
+    }
+
+    // Generate the indices
+    if (indices != NULL) {
+        GLuint coordIndices[] = {
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+            10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+            20, 21, 22, 23, 24, 25, 26, 27, 28, 29
+        };
+
+        *indices = malloc(sizeof(GLuint) * numIndices);
+        memcpy(*indices, coordIndices, sizeof(coordIndices));
+    }
+
+    return numIndices;
+}
+
+/** 
+ * Create a triangle.
+ *
+ * @return sizeof(triIndices)
+ */
+int ESUTIL_API esGenTriangle(float scale,
+                             GLfloat **vertices,
+                             GLfloat **normals,
+                             GLfloat **texCoords,
+                             GLuint  **indices)
+{
+    int numVertices = 3;
+    int numIndices = 3;
+
+    const GLfloat triVerts[] = {
+       0.0f,  0.5f, 0.0f,
+       -0.5f, -0.5f, 0.0f,
+       0.5f, -0.5f, 0.0f
+    };
+    const GLfloat triNormals[] = {
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+    };
+    const GLfloat triTex[] = {
+        0.5f, 0.25f,
+        0.25f, 0.75f,
+        0.75f, 0.75f
+    };
+
+    if (vertices != NULL) {
+        *vertices = malloc(sizeof(GLfloat) * 3 * numVertices);
+        memcpy(*vertices, triVerts, sizeof(triVerts));
+
+        for (int i = 0; i < numVertices * 3; i++){
+            (*vertices)[i] *= scale;
+        }
+    }
+
+    if (normals != NULL) {
+        *normals = malloc(sizeof(GLfloat) * 3 * numVertices);
+        memcpy(*normals, triNormals, sizeof(triNormals));
+    }
+
+    if (texCoords != NULL) {
+        *texCoords = malloc(sizeof(GLfloat) * 2 * numVertices);
+        memcpy(*texCoords, triTex, sizeof(triTex));
+    }
+
+    // Generate the indices
+    if (indices != NULL) {
+        GLuint triIndices[] = {0, 2, 1};
+        *indices = malloc(sizeof(GLuint) * numIndices);
+        memcpy(*indices, triIndices, sizeof(triIndices));
+    }
+
+    return numIndices;
+}
+
 //
 /// \brief Generates geometry for a sphere.  Allocates memory for the vertex data and stores
 ///        the results in the arrays.  Generate index list for a TRIANGLE_STRIP

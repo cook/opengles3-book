@@ -25,5 +25,8 @@ We would like to thank the following people for their contributions to the sourc
 * Jarkko Vatjus-Anttila for contributing the original Linux/X11 port for the OpenGL ES 2.0 Programming Guide
 * Eduardo Pelegri-Llopart and Darryl Gough for contributing the Blackberry Native SDK port for the OpenGL ES 2.0 Programming Guide (we have not yet ported the ES 3.0 book to a Blackberry platform)
 
+My Examples
+=============
+In the directory `MyExamples`:
 
-
+* `coordination.c`: Rending a 3D coordination.
