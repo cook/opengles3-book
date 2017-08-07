@@ -160,14 +160,13 @@ GLboolean userInterrupt(ESContext *esContext)
 void WinLoop ( ESContext *esContext )
 {
     struct timeval t1, t2;
-    struct timezone tz;
     float deltatime;
 
-    gettimeofday ( &t1 , &tz );
+    gettimeofday ( &t1 , NULL );
 
     while(userInterrupt(esContext) == GL_FALSE)
     {
-        gettimeofday(&t2, &tz);
+        gettimeofday(&t2, NULL);
         deltatime = (float)(t2.tv_sec - t1.tv_sec + (t2.tv_usec - t1.tv_usec) * 1e-6);
         t1 = t2;
 
