@@ -16,7 +16,3 @@ else()
     add_library( Common STATIC ${common_src} ${common_platform_src} )
     target_link_libraries( Common ${OPENGLES3_LIBRARY} ${EGL_LIBRARY} ${X11_LIBRARIES} ${M_LIB} )
 endif()
-
-             
-
-
