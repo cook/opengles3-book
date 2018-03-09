@@ -30,3 +30,4 @@ My Examples
 In the directory `MyExamples`:
 
 * `coordination.c`: Rending a 3D coordination.
+* `coordination.hpp` and `coordination.cpp` are a CPP version of the `coordination.c`.
